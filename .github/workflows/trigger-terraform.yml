@@ -9,9 +9,5 @@ on:
 
 jobs:
   call-terraform:
-    uses: ./terraform/.github/workflows/terraform.yml  # Correct path to reusable workflow
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}
-        
+    uses: Prathesh-Yadav/iac-vprofile/.github/workflows/terraform.yml@stage  # Use repo reference
+    secrets: inherit  # Pass all secrets automatically
