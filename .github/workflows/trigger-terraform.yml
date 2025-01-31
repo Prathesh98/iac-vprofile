@@ -1,0 +1,23 @@
+name: "Trigger Terraform Workflow"
+on:
+  push:
+    branches:
+      - main
+      - stage
+    paths:
+      - terraform/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - terraform/**
+
+jobs:
+  call-terraform:
+    uses: Prathesh-Yadav/iac-vprofile/.github/workflows/terraform.yml@stage
+    with:
+      EKS_CLUSTER: vprofile-eks
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}
