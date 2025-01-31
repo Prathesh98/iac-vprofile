@@ -8,11 +8,10 @@ on:
       - stage
 
 jobs:
-  trigger:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-
-      - name: Run Terraform workflow
-        uses: ./terraform/.github/workflows/terraform.yml
+  call-terraform:
+    uses: ./terraform/.github/workflows/terraform.yml  # Correct path to reusable workflow
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}
+        
