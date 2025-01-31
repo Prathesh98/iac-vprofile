@@ -8,6 +8,15 @@ on:
       - stage
 
 jobs:
-  call-terraform:
-    uses: Prathesh-Yadav/iac-vprofile/.github/workflows/terraform.yml@stage  # Use repo reference
-    secrets: inherit  # Pass all secrets automatically
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Run Terraform Workflow Script
+        run: |
+          cd terraform/.github/workflows/
+          chmod +x terraform.yml
+          ./terraform.yml
+
